@@ -18,7 +18,7 @@ var settings = {
     deathRate: 0.5,
     deathTime: 500,
     careRecoveryBonus: 1,
-    careLifeSaveRate: 1.0,
+    careLifeSaveRate: 0.8,
     carePlaces: 20
 };
 
@@ -84,6 +84,8 @@ class Entity {
                 return;
             } else {
                 this.status = statuses.couldNotSave;
+                this.inCare = false;
+                return;
             }
         }
         this.status = statuses.dead;
@@ -151,8 +153,6 @@ class Entity {
                 }
             }
         }
-
-        if (this.status.canInfect) return;
 
         this.x += this.xd;
         this.y += this.yd;
